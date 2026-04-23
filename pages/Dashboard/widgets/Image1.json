@@ -13,7 +13,7 @@
   "enableDownload": false,
   "enableRotation": false,
   "flexVerticalAlignment": "start",
-  "image": "https://raw.githubusercontent.com/Achinya-m/QRpayment/refs/heads/main/QR%20Payment%20logo.svg",
+  "image": "https://raw.githubusercontent.com/Achinya-m/QRpayment_info/refs/heads/main/QR%20Payment%20logo.svg",
   "imageShape": "RECTANGLE",
   "isLoading": false,
   "isVisible": true,
