@@ -6,4 +6,5 @@ FROM
 LEFT JOIN 
     mpete_vending.shops s ON o.shop_id = s.shop_key
 WHERE 
-    DATE(o.created_at) = CURDATE();
+    DATE(o.created_at) = CURDATE()
+		AND o.status IN ('paid', 'late_paid');

@@ -25,7 +25,7 @@
     "dynamicBindingPathList": [],
     "name": "getMerchants",
     "pageId": "Dashboard",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

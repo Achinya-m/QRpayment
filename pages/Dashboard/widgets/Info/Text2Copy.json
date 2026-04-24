@@ -11,9 +11,6 @@
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "text"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -25,11 +22,11 @@
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
   "fontSize": "1.1rem",
-  "fontStyle": "",
+  "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
   "key": "i28l4c7ydr",
-  "leftColumn": 14,
+  "leftColumn": 2,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -44,15 +41,15 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 62,
+  "rightColumn": 14,
   "shouldTruncate": false,
-  "text": "{{ getMerchants.data?.[0]?.Company_name || \" \" }}",
+  "text": "Merchant",
   "textAlign": "LEFT",
-  "textColor": "#231F20",
+  "textColor": "#012ba5",
   "topRow": 0,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "im8zflwxhy",
-  "widgetName": "Text2"
+  "widgetId": "1mbzlzcaoc",
+  "widgetName": "Text2Copy"
 }
