@@ -1,6 +1,6 @@
 {
   "animateLoading": false,
-  "backgroundColor": "transparent",
+  "backgroundColor": "#e1f6ff",
   "borderColor": "transparent",
   "borderRadius": "1.5rem",
   "borderWidth": "1",
@@ -74,7 +74,7 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 64,
+  "rightColumn": 63,
   "shouldScrollContents": false,
   "topRow": 0,
   "type": "CONTAINER_WIDGET",

@@ -1,6 +1,6 @@
 {
   "gitSyncId": "69e9834a79cc0115d7ebef40_e78d20e8-0aa5-44a6-8cef-146aa2da479d",
-  "id": "Dashboard_getTotalRevenue",
+  "id": "Dashboard_getTotal",
   "pluginId": "mysql-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
@@ -23,7 +23,7 @@
       "pluginId": "mysql-plugin"
     },
     "dynamicBindingPathList": [],
-    "name": "getTotalRevenue",
+    "name": "getTotal",
     "pageId": "Dashboard",
     "runBehaviour": "ON_PAGE_LOAD",
     "userSetOnLoad": true

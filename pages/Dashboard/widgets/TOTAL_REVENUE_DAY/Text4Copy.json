@@ -44,7 +44,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 61,
   "shouldTruncate": false,
-  "text": "{{ getTotalRevenue.data?.[0]?.totalRevenue || \"฿ 0\" }}",
+  "text": "{{ getTotalDay.data?.[0]?.totalRevenueDay || \"฿ 0\" }}",
   "textAlign": "LEFT",
   "textColor": "#3b82f6",
   "topRow": 5,
