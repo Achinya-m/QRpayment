@@ -15,5 +15,5 @@ WHERE
     o.status IN ('paid', 'late_paid')
     AND (
         {{ !SelectShop.selectedOptionValue }} 
-        OR o.shop_id = '{{ SelectShop.selectedOptionValue }}'
+        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'
     );

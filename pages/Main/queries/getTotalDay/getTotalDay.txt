@@ -4,12 +4,12 @@ SELECT
 FROM 
     mpete_vending.orders o
 LEFT JOIN 
-    mpete_vending.shops s ON o.shop_id = s.shop_key
+    mpete_vending.shops s ON o.shop_key = s.shop_key
 WHERE 
 		o.status IN ('paid', 'late_paid')
 		AND DATE(o.created_at) = CURDATE()
 		AND (
         {{ !SelectShop.selectedOptionValue }} 
-        OR o.shop_id = '{{ SelectShop.selectedOptionValue }}'
+        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'
     );
 		

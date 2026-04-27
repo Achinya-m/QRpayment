@@ -1,0 +1,18 @@
+SELECT
+    d.device_id,
+    SUM(o.amount) AS totalAmount
+FROM 
+    mpete_vending.orders o
+LEFT JOIN 
+    mpete_vending.devices d ON o.device_id = d.device_id
+WHERE 
+    o.status IN ('paid', 'late_paid')
+    AND (
+        {{ !SelectShop.selectedOptionValue }} 
+        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'
+    )
+GROUP BY 
+    d.device_id
+ORDER BY 
+    totalAmount DESC
+LIMIT 10;

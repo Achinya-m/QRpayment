@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0), 0)) AS totalRevenue,\n\n    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0) * 0.92, 2)) AS revenueNet,\n\n    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0) * 0.01, 2)) AS vendorFee,\n\n    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0) * 0.07, 2)) AS taxVat,\n\n    FORMAT(COUNT(o.order_id), 0) AS totalTransactions\n\nFROM \n    mpete_vending.orders o\nWHERE \n    o.status IN ('paid', 'late_paid')\n    AND (\n        {{ !SelectShop.selectedOptionValue }} \n        OR o.shop_id = '{{ SelectShop.selectedOptionValue }}'\n    );",
+      "body": "SELECT\n    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0), 0)) AS totalRevenue,\n\n    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0) * 0.92, 2)) AS revenueNet,\n\n    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0) * 0.01, 2)) AS vendorFee,\n\n    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0) * 0.07, 2)) AS taxVat,\n\n    FORMAT(COUNT(o.order_id), 0) AS totalTransactions\n\nFROM \n    mpete_vending.orders o\nWHERE \n    o.status IN ('paid', 'late_paid')\n    AND (\n        {{ !SelectShop.selectedOptionValue }} \n        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'\n    );",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
