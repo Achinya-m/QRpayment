@@ -1,10 +1,16 @@
 SELECT
-    CONCAT('฿ ', FORMAT(SUM(o.amount), 0)) AS totalRevenue,
+    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0), 0)) AS totalRevenue,
+
+    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0) * 0.92, 2)) AS revenueNet,
+
+    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0) * 0.01, 2)) AS vendorFee,
+
+    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0) * 0.07, 2)) AS taxVat,
+
     FORMAT(COUNT(o.order_id), 0) AS totalTransactions
+
 FROM 
     mpete_vending.orders o
-LEFT JOIN 
-    mpete_vending.shops s ON o.shop_id = s.shop_key
 WHERE 
     o.status IN ('paid', 'late_paid')
     AND (
