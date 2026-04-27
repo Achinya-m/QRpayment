@@ -7,6 +7,6 @@ export default {
 			getShop.run();
       getTotal.run();
       getTotalDay.run();
-    }, 5000);
+    }, 1000);
   }
 }
