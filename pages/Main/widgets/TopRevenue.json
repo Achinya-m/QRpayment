@@ -6,10 +6,10 @@
   "bottomRow": 62,
   "boxShadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
   "chartData": {
-    "riemnq3fon": {
+    "vz6q089u0w": {
       "color": "#3b82f6",
-      "data": "[\n  {\n    \"x\": \"Product1\",\n    \"y\": 20000\n  },\n  {\n    \"x\": \"Product2\",\n    \"y\": 22000\n  },\n  {\n    \"x\": \"Product3\",\n    \"y\": 32000\n  }\n]",
-      "seriesName": "2023"
+      "data": "{{ \n  getTopDevice.data.map(item => ({\n    x: item.device_id,\n    y: item.totalAmount\n  }))\n}}",
+      "seriesName": ""
     }
   },
   "chartName": "",
@@ -25,6 +25,9 @@
     },
     {
       "key": "fontFamily"
+    },
+    {
+      "key": "chartData.vz6q089u0w.data"
     }
   ],
   "dynamicPropertyPathList": [
@@ -59,6 +62,6 @@
   "version": 1,
   "widgetId": "h8do8z2uaa",
   "widgetName": "TopRevenue",
-  "xAxisName": "Product Line",
-  "yAxisName": "Revenue($)"
+  "xAxisName": "รายได้ (บาท)",
+  "yAxisName": "ชื่ออุปกรณ์"
 }
