@@ -19,10 +19,14 @@
       "key": "borderRadius"
     }
   ],
-  "dynamicTriggerPathList": [],
+  "dynamicTriggerPathList": [
+    {
+      "key": "menuItems.menuItem1.onClick"
+    }
+  ],
   "iconAlign": "left",
-  "iconName": "properties",
-  "isCompact": false,
+  "iconName": "menu",
+  "isCompact": true,
   "isDisabled": false,
   "isLoading": false,
   "isVisible": true,
@@ -32,27 +36,28 @@
   "menuColor": "#012ba5",
   "menuItems": {
     "menuItem1": {
+      "backgroundColor": "",
+      "iconAlign": "right",
+      "iconColor": "",
       "id": "menuItem1",
       "index": 0,
       "isDisabled": false,
       "isVisible": true,
-      "label": "First Menu Item",
+      "label": "ข้อมูลการเงิน",
+      "onClick": "{{navigateTo('Main', {}, 'SAME_WINDOW');}}",
+      "textColor": "#012ba5",
       "widgetId": ""
     },
     "menuItem2": {
+      "backgroundColor": "",
+      "iconAlign": "right",
+      "iconColor": "",
       "id": "menuItem2",
       "index": 1,
       "isDisabled": false,
       "isVisible": true,
-      "label": "Second Menu Item",
-      "widgetId": ""
-    },
-    "menuItem3": {
-      "id": "menuItem3",
-      "index": 2,
-      "isDisabled": false,
-      "isVisible": true,
-      "label": "Third Menu Item",
+      "label": "บันทึกข้อมูลอุปกรณ์",
+      "textColor": "#012ba5",
       "widgetId": ""
     }
   },
@@ -69,7 +74,7 @@
   "placement": "CENTER",
   "renderMode": "CANVAS",
   "rightColumn": 3,
-  "sourceData": [],
+  "sourceData": "[]",
   "topRow": 0,
   "type": "MENU_BUTTON_WIDGET",
   "version": 1,

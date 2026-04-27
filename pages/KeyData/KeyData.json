@@ -1,25 +1,23 @@
 {
-  "gitSyncId": "69e9834a79cc0115d7ebef40_35a3e03d-ad83-4028-bbc5-eccc22ae69af",
+  "gitSyncId": "69e9834a79cc0115d7ebef40_1a5e6011-de35-4e05-9174-2c8e116f9312",
   "unpublishedPage": {
-    "customSlug": "",
-    "isHidden": true,
+    "isHidden": false,
     "layouts": [
       {
         "dsl": {
           "backgroundColor": "none",
-          "bottomRow": 620,
+          "bottomRow": 530,
           "canExtend": true,
           "containerStyle": "none",
           "detachFromLayout": true,
           "dynamicBindingPathList": [],
-          "dynamicTriggerPathList": [],
           "leftColumn": 0,
-          "minHeight": 1292,
+          "minHeight": 540,
           "parentColumnSpace": 1,
           "parentRowSpace": 1,
-          "rightColumn": 4896,
+          "rightColumn": 1224,
           "snapColumns": 64,
-          "snapRows": 124,
+          "snapRows": 52,
           "topRow": 0,
           "type": "CANVAS_WIDGET",
           "version": 94,
@@ -28,7 +26,7 @@
         }
       }
     ],
-    "name": "Main",
-    "slug": "main"
+    "name": "KeyData",
+    "slug": "keydata"
   }
 }

@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n    CONCAT('฿ ', FORMAT(SUM(o.amount), 0)) AS totalRevenueDay,\n    FORMAT(COUNT(o.order_id), 0) AS totalTransactionsDay\nFROM \n    mpete_vending.orders o\nLEFT JOIN \n    mpete_vending.shops s ON o.shop_id = s.shop_key\nWHERE \n\t\to.status IN ('paid', 'late_paid')\n\t\tAND DATE(o.created_at) = CURDATE();",
+      "body": "SELECT \n    CONCAT('฿ ', FORMAT(SUM(o.amount), 0)) AS totalRevenueDay,\n    FORMAT(COUNT(o.order_id), 0) AS totalTransactionsDay\nFROM \n    mpete_vending.orders o\nLEFT JOIN \n    mpete_vending.shops s ON o.shop_id = s.shop_key\nWHERE \n\t\to.status IN ('paid', 'late_paid')\n\t\tAND DATE(o.created_at) = CURDATE()\n\t\tAND (\n        {{ !SelectShop.selectedOptionValue }} \n        OR o.shop_id = '{{ SelectShop.selectedOptionValue }}'\n    );\n\t\t",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -22,7 +22,11 @@
       "name": "QR-PAYMENT",
       "pluginId": "mysql-plugin"
     },
-    "dynamicBindingPathList": [],
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
     "name": "getTotalDay",
     "pageId": "Main",
     "runBehaviour": "AUTOMATIC",

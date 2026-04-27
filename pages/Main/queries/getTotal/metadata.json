@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n    CONCAT('฿ ', FORMAT(SUM(o.amount), 0)) AS totalRevenue,\n    FORMAT(COUNT(o.order_id), 0) AS totalTransactions\nFROM \n    mpete_vending.orders o\nLEFT JOIN \n    mpete_vending.shops s ON o.shop_id = s.shop_key\nWHERE \n    o.status IN ('paid', 'late_paid');",
+      "body": "SELECT\n    CONCAT('฿ ', FORMAT(SUM(o.amount), 0)) AS totalRevenue,\n    FORMAT(COUNT(o.order_id), 0) AS totalTransactions\nFROM \n    mpete_vending.orders o\nLEFT JOIN \n    mpete_vending.shops s ON o.shop_id = s.shop_key\nWHERE \n    o.status IN ('paid', 'late_paid')\n    AND (\n        {{ !SelectShop.selectedOptionValue }} \n        OR o.shop_id = '{{ SelectShop.selectedOptionValue }}'\n    );",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -22,7 +22,11 @@
       "name": "QR-PAYMENT",
       "pluginId": "mysql-plugin"
     },
-    "dynamicBindingPathList": [],
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
     "name": "getTotal",
     "pageId": "Main",
     "runBehaviour": "ON_PAGE_LOAD",

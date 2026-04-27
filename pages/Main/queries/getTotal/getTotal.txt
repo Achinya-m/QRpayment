@@ -6,4 +6,8 @@ FROM
 LEFT JOIN 
     mpete_vending.shops s ON o.shop_id = s.shop_key
 WHERE 
-    o.status IN ('paid', 'late_paid');
+    o.status IN ('paid', 'late_paid')
+    AND (
+        {{ !SelectShop.selectedOptionValue }} 
+        OR o.shop_id = '{{ SelectShop.selectedOptionValue }}'
+    );

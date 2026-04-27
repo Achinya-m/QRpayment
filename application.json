@@ -33,6 +33,10 @@
     {
       "id": "Main",
       "isDefault": false
+    },
+    {
+      "id": "KeyData",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {
