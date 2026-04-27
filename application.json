@@ -27,8 +27,12 @@
   "icon": "dollar",
   "pages": [
     {
-      "id": "Dashboard",
+      "id": "Authentication",
       "isDefault": true
+    },
+    {
+      "id": "Main",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {
