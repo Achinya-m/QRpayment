@@ -27,15 +27,15 @@
   "icon": "dollar",
   "pages": [
     {
-      "id": "Authentication",
-      "isDefault": false
-    },
-    {
       "id": "Main",
       "isDefault": true
     },
     {
       "id": "KeyData",
+      "isDefault": false
+    },
+    {
+      "id": "Main Copy",
       "isDefault": false
     }
   ],

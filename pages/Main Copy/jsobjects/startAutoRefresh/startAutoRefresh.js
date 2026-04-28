@@ -3,7 +3,7 @@ export default {
     setInterval(() => {
 			getDevice.run();
 			getMerchants.run();
-			getOrder.run();
+			getOrders.run();
 			getShop.run();
       getTotal.run();
       getTotalDay.run();

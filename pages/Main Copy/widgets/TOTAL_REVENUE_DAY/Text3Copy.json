@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 4,
+  "bottomRow": 5,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -14,15 +14,10 @@
     }
   ],
   "dynamicHeight": "FIXED",
-  "dynamicPropertyPathList": [
-    {
-      "key": "fontSize"
-    }
-  ],
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1.1rem",
-  "fontStyle": "",
+  "fontSize": "1rem",
+  "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
   "key": "plbjdv6jm8",
@@ -37,19 +32,19 @@
   "needsErrorInfo": false,
   "overflow": "NONE",
   "parentColumnSpace": 3.05078125,
-  "parentId": "h6qo0x4jxy",
+  "parentId": "rz3ckl81wx",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 16,
+  "rightColumn": 61,
   "shouldTruncate": false,
-  "text": "ผู้ให้บริการ",
+  "text": "ยอดเงินรวมประจำวัน",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 0,
+  "topRow": 1,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "xidaqvk58p",
-  "widgetName": "Text3Copy3Copy"
+  "widgetId": "odn5wrasaw",
+  "widgetName": "Text3Copy"
 }

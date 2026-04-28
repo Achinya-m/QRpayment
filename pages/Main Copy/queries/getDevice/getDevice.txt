@@ -1,0 +1,5 @@
+SELECT d.*
+FROM mpete_vending.devices d
+JOIN mpete_vending.shops s 
+  ON d.shop_key = s.shop_key
+WHERE s.merchant_key = {{ keyMerchant.data[0].merchant_key }};

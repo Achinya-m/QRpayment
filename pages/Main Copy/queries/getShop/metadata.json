@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "69e9834a79cc0115d7ebef40_05b825e4-9acf-49e7-a56d-e784b0408582",
-  "id": "Main_getMerchants",
+  "gitSyncId": "69e9834a79cc0115d7ebef40_c61d15c7-782e-4194-9a6d-5ef2b5ab4464",
+  "id": "Main Copy_getShop",
   "pluginId": "mysql-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT * FROM merchants;",
+      "body": "SELECT *\nFROM mpete_vending.shops\nWHERE merchant_key = {{ keyMerchant.data[0].merchant_key }};",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -22,10 +22,14 @@
       "name": "QR-PAYMENT",
       "pluginId": "mysql-plugin"
     },
-    "dynamicBindingPathList": [],
-    "name": "getMerchants",
-    "pageId": "Main",
-    "runBehaviour": "MANUAL",
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
+    "name": "getShop",
+    "pageId": "Main Copy",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }
