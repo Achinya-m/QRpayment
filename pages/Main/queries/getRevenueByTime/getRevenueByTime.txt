@@ -1,0 +1,28 @@
+SELECT
+    DATE(o.paid_at) AS date,
+    
+    CASE 
+        WHEN {{ !SelectShop.selectedOptionValue }}
+        THEN 'All Devices'
+        ELSE o.device_id
+    END AS series,
+
+    SUM(o.amount) AS totalAmount
+
+FROM 
+    mpete_vending.orders o
+
+WHERE 
+    o.status IN ('paid', 'late_paid')
+    AND o.paid_at >= CURDATE() - INTERVAL 30 DAY
+    AND (
+        {{ !SelectShop.selectedOptionValue }} 
+        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'
+    )
+
+GROUP BY 
+    DATE(o.paid_at),
+    series
+
+ORDER BY 
+    date ASC;

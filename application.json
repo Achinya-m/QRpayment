@@ -28,11 +28,11 @@
   "pages": [
     {
       "id": "Authentication",
-      "isDefault": true
+      "isDefault": false
     },
     {
       "id": "Main",
-      "isDefault": false
+      "isDefault": true
     },
     {
       "id": "KeyData",
