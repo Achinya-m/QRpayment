@@ -9,7 +9,7 @@
     "w01g8zgz3b": {
       "color": "#3b82f6",
       "data": "{{  getRevenueByTime.data.map(item => ({\n    x: item.date,\n    y: item.totalAmount\n  }))\n}}",
-      "seriesName": "{{ getRevenueByTime.data?.[0]?.series || \"฿ 0\" }}"
+      "seriesName": "{{ getRevenueByTime.data?.[0]?.series || \" \" }}"
     }
   },
   "chartName": "",
@@ -99,9 +99,9 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 63,
+  "rightColumn": 64,
   "showDataPointLabel": true,
-  "topRow": 33,
+  "topRow": 32,
   "type": "CHART_WIDGET",
   "version": 1,
   "widgetId": "7lhkmmluwd",

@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n    CONCAT('฿ ', FORMAT(SUM(o.amount), 0)) AS totalRevenueDay,\n    FORMAT(COUNT(o.order_id), 0) AS totalTransactionsDay\nFROM \n    mpete_vending.orders o\nLEFT JOIN \n    mpete_vending.shops s ON o.shop_key = s.shop_key\nWHERE \n\t\to.status IN ('paid', 'late_paid')\n\t\tAND DATE(o.created_at) = CURDATE()\n\t\tAND (\n        {{ !SelectShop.selectedOptionValue }} \n        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'\n    );\n\t\t",
+      "body": "SELECT\n    FORMAT(COALESCE(SUM(o.amount),0), 0) AS totalRevenueDay,\n    FORMAT(COALESCE(COUNT(o.order_id),0), 0) AS totalTransactionsDay\n\nFROM mpete_vending.orders o\nJOIN mpete_vending.merchants m \n    ON o.merchant_key = m.merchant_key\n\nWHERE o.merchant_key = '{{ keyMerchant.data?.[0]?.merchant_key || \"\" }}'\nAND o.status IN ('paid', 'late_paid')\nAND DATE(o.created_at) = CURDATE()\n\nAND (\n    '{{ SelectShop.selectedOptionValue || \"\" }}' = ''\n    OR o.shop_key = '{{ SelectShop.selectedOptionValue || \"\" }}'\n);",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

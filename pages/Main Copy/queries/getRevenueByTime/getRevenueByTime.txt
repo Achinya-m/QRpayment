@@ -3,7 +3,7 @@ SELECT
     
     CASE 
         WHEN {{ !SelectShop.selectedOptionValue }}
-        THEN 'All'
+        THEN 'All Shop'
         ELSE o.device_id
     END AS series,
 

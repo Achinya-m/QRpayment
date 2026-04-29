@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n    DATE(o.paid_at) AS date,\n    \n    CASE \n        WHEN {{ !SelectShop.selectedOptionValue }}\n        THEN 'All'\n        ELSE o.device_id\n    END AS series,\n\n    SUM(o.amount) AS totalAmount\n\nFROM \n    mpete_vending.orders o\n\nWHERE \n    o.status IN ('paid', 'late_paid')\n    AND o.paid_at >= CURDATE() - INTERVAL 30 DAY\n    AND (\n        {{ !SelectShop.selectedOptionValue }} \n        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'\n    )\n\nGROUP BY \n    DATE(o.paid_at),\n    series\n\nORDER BY \n    date ASC;",
+      "body": "SELECT\n    DATE(o.paid_at) AS date,\n    \n    CASE \n        WHEN {{ !SelectShop.selectedOptionValue }}\n        THEN 'All Shop'\n        ELSE o.device_id\n    END AS series,\n\n    SUM(o.amount) AS totalAmount\n\nFROM \n    mpete_vending.orders o\n\nWHERE \n    o.status IN ('paid', 'late_paid')\n    AND o.paid_at >= CURDATE() - INTERVAL 30 DAY\n    AND (\n        {{ !SelectShop.selectedOptionValue }} \n        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'\n    )\n\nGROUP BY \n    DATE(o.paid_at),\n    series\n\nORDER BY \n    date ASC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

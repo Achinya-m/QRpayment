@@ -1,5 +1,5 @@
 {
-  "animateLoading": true,
+  "animateLoading": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 4,
   "dynamicBindingPathList": [
@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -26,7 +29,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "plbjdv6jm8",
-  "leftColumn": 17,
+  "leftColumn": 13,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -41,11 +44,11 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 26,
+  "rightColumn": 25,
   "shouldTruncate": false,
-  "text": "xxx",
-  "textAlign": "LEFT",
-  "textColor": "#231F20",
+  "text": "{{ getMerchants.data?.[0]?.tran_fee ? `( ${getMerchants.data[0].tran_fee}% )` : \"\" }}",
+  "textAlign": "CENTER",
+  "textColor": "#71717a",
   "topRow": 0,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
