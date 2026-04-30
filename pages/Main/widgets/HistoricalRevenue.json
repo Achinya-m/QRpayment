@@ -8,13 +8,13 @@
   "chartData": {
     "w01g8zgz3b": {
       "color": "#3b82f6",
-      "data": "{{  getRevenueByTime.data.map(item => ({\n    x: item.date,\n    y: item.totalAmount\n  }))\n}}",
-      "seriesName": "{{ getRevenueByTime.data?.[0]?.series || \"฿ 0\" }}"
+      "data": "{{\n(() => {\n\n  const grouped = {};\n\n  getTopDevice.data.forEach(item => {\n\n    if (!grouped[item.seriesName]) {\n      grouped[item.seriesName] = [];\n    }\n\n    grouped[item.seriesName].push({\n      x: item.timeLabel,\n      y: Number(item.totalAmount)\n    });\n\n  });\n\n  return Object.keys(grouped).map(key => ({\n    seriesName: key,\n    data: grouped[key]\n  }));\n\n})()\n}}",
+      "seriesName": ""
     }
   },
   "chartName": "",
-  "chartType": "LINE_CHART",
-  "customEChartConfig": "{{\n{\n  \"dataset\": {\n    \"source\": [\n      [\n        \"Day\",\n        \"Baidu\",\n        \"Google\",\n        \"Bing\"\n      ],\n      [\n        \"Mon\",\n        620,\n        120,\n        60\n      ],\n      [\n        \"Tue\",\n        732,\n        132,\n        72\n      ],\n      [\n        \"Wed\",\n        701,\n        101,\n        71\n      ],\n      [\n        \"Thu\",\n        734,\n        134,\n        74\n      ],\n      [\n        \"Fri\",\n        1090,\n        290,\n        190\n      ],\n      [\n        \"Sat\",\n        1130,\n        230,\n        130\n      ],\n      [\n        \"Sun\",\n        1120,\n        220,\n        110\n      ]\n    ]\n  },\n  \"tooltip\": {\n    \"trigger\": \"axis\",\n    \"axisPointer\": {\n      \"type\": \"shadow\"\n    }\n  },\n  \"title\": {\n    \"text\": \"Search Engine Usage\",\n    \"left\": \"center\",\n    \"textStyle\": {\n      \"width\": 200,\n      \"overflow\": \"truncate\"\n    }\n  },\n  \"legend\": {\n    \"top\": 40,\n    \"type\": \"scroll\"\n  },\n  \"grid\": {\n    \"left\": 15,\n    \"right\": 15,\n    \"bottom\": 30,\n    \"top\": 100,\n    \"containLabel\": true\n  },\n  \"xAxis\": [\n    {\n      \"type\": \"category\"\n    }\n  ],\n  \"yAxis\": [\n    {\n      \"type\": \"value\"\n    }\n  ],\n  \"series\": [\n    {\n      \"type\": \"bar\",\n      \"stack\": \"Search Engine\"\n    },\n    {\n      \"type\": \"bar\",\n      \"stack\": \"Search Engine\"\n    },\n    {\n      \"type\": \"bar\",\n      \"stack\": \"Search Engine\"\n    }\n  ]\n}\n}}",
+  "chartType": "CUSTOM_ECHART",
+  "customEChartConfig": "{{ ((chartType) => ( \n(() => {\n\n  const rawData = getRevenueByTime.data;\n\n  // ดึงเวลาไม่ซ้ำ\n  const xAxisData = [...new Set(\n    rawData.map(item => String(item.timeLabel))\n  )];\n\n  // group ตาม series\n  const grouped = {};\n\n  rawData.forEach(item => {\n\n    const name = item.seriesName;\n\n    if (!grouped[name]) {\n      grouped[name] = {};\n    }\n\n    grouped[name][item.timeLabel] = Number(item.totalAmount);\n\n  });\n\n  return {\n    tooltip: {\n      trigger: 'axis'\n    },\n\n    legend: {\n      top: 0\n    },\n\n    xAxis: {\n      type: 'category',\n      data: xAxisData\n    },\n\n    yAxis: {\n      type: 'value'\n    },\n\n    series: Object.keys(grouped).map(name => ({\n      name,\n      type: 'line',\n      smooth: true,\n      data: xAxisData.map(time =>\n        grouped[name][time] || 0\n      )\n    }))\n  };\n\n})()\n))(HistoricalRevenue.chartType) }}",
   "customFusionChartConfig": {
     "dataSource": {
       "chart": {
@@ -74,9 +74,6 @@
     },
     {
       "key": "chartData.w01g8zgz3b.data"
-    },
-    {
-      "key": "chartData.w01g8zgz3b.seriesName"
     }
   ],
   "dynamicPropertyPathList": [],
@@ -99,9 +96,9 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 63,
+  "rightColumn": 64,
   "showDataPointLabel": true,
-  "topRow": 33,
+  "topRow": 32,
   "type": "CHART_WIDGET",
   "version": 1,
   "widgetId": "7lhkmmluwd",

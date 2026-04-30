@@ -1,9 +1,10 @@
 export default {
   startAutoRefresh() {
     setInterval(() => {
+			keyMerchant.run();
 			getDevice.run();
 			getMerchants.run();
-			getOrder.run();
+			getOrders.run();
 			getShop.run();
       getTotal.run();
       getTotalDay.run();

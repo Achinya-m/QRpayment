@@ -8,7 +8,7 @@
   "chartData": {
     "vz6q089u0w": {
       "color": "#3b82f6",
-      "data": "{{ \n  getTopDevice.data.map(item => ({\n    x: item.device_id,\n    y: item.totalAmount\n  }))\n}}",
+      "data": "{{\n  getTopDevice.data\n    .sort((b, a) => Number(b.totalAmount) - Number(a.totalAmount))\n    .map(item => ({\n      x: item.name,\n      y: Number(item.totalAmount)\n    }))\n}}",
       "seriesName": ""
     }
   },
@@ -28,6 +28,9 @@
     },
     {
       "key": "chartData.vz6q089u0w.data"
+    },
+    {
+      "key": "yAxisName"
     }
   ],
   "dynamicPropertyPathList": [
@@ -42,7 +45,7 @@
   "isVisible": true,
   "key": "n0y571yrdv",
   "labelOrientation": "auto",
-  "leftColumn": 1,
+  "leftColumn": 0,
   "minWidth": 450,
   "mobileBottomRow": 55,
   "mobileLeftColumn": 0,
@@ -57,11 +60,11 @@
   "rightColumn": 31,
   "setAdaptiveYMin": false,
   "showDataPointLabel": false,
-  "topRow": 33,
+  "topRow": 32,
   "type": "CHART_WIDGET",
   "version": 1,
   "widgetId": "h8do8z2uaa",
   "widgetName": "TopRevenue",
   "xAxisName": "รายได้ (บาท)",
-  "yAxisName": "ชื่ออุปกรณ์"
+  "yAxisName": "{{\n  SelectShop.selectedOptionValue\n    ? \"อุปกรณ์\"\n    : \"ร้านค้า\"\n}}"
 }

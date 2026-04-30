@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "69e9834a79cc0115d7ebef40_e78d20e8-0aa5-44a6-8cef-146aa2da479d",
+  "gitSyncId": "69e9834a79cc0115d7ebef40_e1567442-3b9b-4493-8724-4f94e8629bf9",
   "id": "Main_getTotal",
   "pluginId": "mysql-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0), 0)) AS totalRevenue,\n\n    -- revenueNet = fee + VAT ของ fee\n    CONCAT('฿ ', FORMAT(\n        COALESCE(SUM(o.amount),0) * (COALESCE(m.tran_fee,0) * 1.07),\n    2)) AS revenueNet,\n\n    -- vendorFee = fee จริง\n    CONCAT('฿ ', FORMAT(\n        COALESCE(SUM(o.amount),0) * COALESCE(m.tran_fee,0),\n    2)) AS vendorFee,\n\n    -- VAT = 7% ของ total\n    CONCAT('฿ ', FORMAT(\n        COALESCE(SUM(o.amount),0) * 0.07,\n    2)) AS taxVat,\n\n    FORMAT(COUNT(o.order_id), 0) AS totalTransactions\n\nFROM \n    mpete_vending.orders o\nLEFT JOIN \n    mpete_vending.merchants m \n    ON o.merchant_key = m.merchant_key\n\nWHERE \n    o.status IN ('paid', 'late_paid')\n    AND (\n        {{ !SelectShop.selectedOptionValue }} \n        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'\n    );",
+      "body": "SELECT\n    ROUND(COALESCE(SUM(o.amount),0), 2) AS totalRevenue,\n\n    COUNT(o.order_id) AS totalTransaction,\n\n    ROUND(COALESCE(SUM(o.amount * (m.tran_fee / 100)),0), 2) AS vendorFee,\n\n    ROUND(COALESCE(SUM((o.amount * (m.tran_fee / 100)*1.07)),0), 2) AS taxVat,\n\n    ROUND(COALESCE(SUM(o.amount * (1 - ((m.tran_fee / 100) * 1.07))),0), 2) AS revenueNet\n\nFROM mpete_vending.orders o\nJOIN mpete_vending.merchants m \n    ON o.merchant_key = m.merchant_key\n\nWHERE o.merchant_key = '{{ keyMerchant.data?.[0]?.merchant_key || \"\" }}'\nAND o.status IN ('paid', 'late_paid')\nAND (\n      {{ !SelectShop.selectedOptionValue }} \n      OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'\n  );",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

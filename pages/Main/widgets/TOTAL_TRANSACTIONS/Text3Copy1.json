@@ -38,7 +38,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 61,
   "shouldTruncate": false,
-  "text": "จำนวนครั้งการโอนเงิน",
+  "text": "จำนวนครั้งการโอนเงิน ( ครั้ง )",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 1,

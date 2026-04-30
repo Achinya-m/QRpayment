@@ -1,32 +1,21 @@
 SELECT
-    CONCAT('฿ ', FORMAT(COALESCE(SUM(o.amount),0), 0)) AS totalRevenue,
+    ROUND(COALESCE(SUM(o.amount),0), 2) AS totalRevenue,
 
-    -- revenueNet = fee + VAT ของ fee
-    CONCAT('฿ ', FORMAT(
-        COALESCE(SUM(o.amount),0) * (COALESCE(m.tran_fee,0) * 1.07),
-    2)) AS revenueNet,
+    COUNT(o.order_id) AS totalTransaction,
 
-    -- vendorFee = fee จริง
-    CONCAT('฿ ', FORMAT(
-        COALESCE(SUM(o.amount),0) * COALESCE(m.tran_fee,0),
-    2)) AS vendorFee,
+    ROUND(COALESCE(SUM(o.amount * (m.tran_fee / 100)),0), 2) AS vendorFee,
 
-    -- VAT = 7% ของ total
-    CONCAT('฿ ', FORMAT(
-        COALESCE(SUM(o.amount),0) * 0.07,
-    2)) AS taxVat,
+    ROUND(COALESCE(SUM((o.amount * (m.tran_fee / 100)*1.07)),0), 2) AS taxVat,
 
-    FORMAT(COUNT(o.order_id), 0) AS totalTransactions
+    ROUND(COALESCE(SUM(o.amount * (1 - ((m.tran_fee / 100) * 1.07))),0), 2) AS revenueNet
 
-FROM 
-    mpete_vending.orders o
-LEFT JOIN 
-    mpete_vending.merchants m 
+FROM mpete_vending.orders o
+JOIN mpete_vending.merchants m 
     ON o.merchant_key = m.merchant_key
 
-WHERE 
-    o.status IN ('paid', 'late_paid')
-    AND (
-        {{ !SelectShop.selectedOptionValue }} 
-        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'
-    );
+WHERE o.merchant_key = '{{ keyMerchant.data?.[0]?.merchant_key || "" }}'
+AND o.status IN ('paid', 'late_paid')
+AND (
+      {{ !SelectShop.selectedOptionValue }} 
+      OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'
+  );

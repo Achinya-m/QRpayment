@@ -1,18 +1,48 @@
-SELECT
-    d.device_id,
-    SUM(o.amount) AS totalAmount
-FROM 
-    mpete_vending.orders o
-LEFT JOIN 
-    mpete_vending.devices d ON o.device_id = d.device_id
-WHERE 
-    o.status IN ('paid', 'late_paid')
-    AND (
-        {{ !SelectShop.selectedOptionValue }} 
-        OR o.shop_key = '{{ SelectShop.selectedOptionValue }}'
-    )
-GROUP BY 
-    d.device_id
-ORDER BY 
-    totalAmount DESC
+SELECT *
+FROM (
+
+    -- กรณีไม่ได้เลือกร้าน → แสดง Top Shop ทั้งหมด
+    SELECT
+        s.shop_name AS name,
+        COALESCE(SUM(
+            CASE 
+                WHEN o.status IN ('paid', 'late_paid') 
+                THEN o.amount 
+                ELSE 0 
+            END
+        ),0) AS totalAmount,
+        'shop' AS type
+    FROM mpete_vending.shops s
+    LEFT JOIN mpete_vending.orders o 
+        ON s.shop_key = o.shop_key
+        AND o.merchant_key = '{{ keyMerchant.data?.[0]?.merchant_key || "" }}'
+    WHERE 
+        s.merchant_key = '{{ keyMerchant.data?.[0]?.merchant_key || "" }}'
+        AND '{{ SelectShop.selectedOptionValue || "" }}' = ''
+    GROUP BY s.shop_key, s.shop_name
+
+    UNION ALL
+
+    -- กรณีเลือกร้าน → แสดง Device ทั้งหมดของร้านนั้น
+    SELECT
+        d.device_id AS name,
+        COALESCE(SUM(
+            CASE 
+                WHEN o.status IN ('paid', 'late_paid') 
+                THEN o.amount 
+                ELSE 0 
+            END
+        ),0) AS totalAmount,
+        'device' AS type
+    FROM mpete_vending.devices d
+    LEFT JOIN mpete_vending.orders o 
+        ON d.device_id = o.device_id
+        AND o.merchant_key = '{{ keyMerchant.data?.[0]?.merchant_key || "" }}'
+    WHERE 
+        d.shop_key = '{{ SelectShop.selectedOptionValue || "" }}'
+    GROUP BY d.device_id
+
+) t
+
+ORDER BY totalAmount DESC
 LIMIT 10;

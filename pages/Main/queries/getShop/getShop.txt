@@ -1,1 +1,3 @@
-SELECT * FROM shops;
+SELECT *
+FROM mpete_vending.shops
+WHERE merchant_key = {{ keyMerchant.data[0].merchant_key }};

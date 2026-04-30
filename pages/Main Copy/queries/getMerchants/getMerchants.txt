@@ -1,3 +1,0 @@
-SELECT *
-FROM mpete_vending.merchants
-WHERE merchant_key = {{ keyMerchant.data[0].merchant_key }};

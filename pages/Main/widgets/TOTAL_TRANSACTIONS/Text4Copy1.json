@@ -44,7 +44,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 61,
   "shouldTruncate": false,
-  "text": "{{ getTotal.data?.[0]?.totalTransactions || \"฿ 0\" }}",
+  "text": "{{ getTotal.data?.[0]?.totalTransaction || \" 0\" }}",
   "textAlign": "LEFT",
   "textColor": "#3b82f6",
   "topRow": 5,
